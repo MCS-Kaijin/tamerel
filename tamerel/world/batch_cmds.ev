@@ -23,4 +23,8 @@
 # system for loading python-code this way.
 #
 
+desc Welcome to Tamerel. You have been created by the merciful god known only as the Lich.
+The Lich will now allow you to create your character. Type 'help character' to find character
+creation commands, and type 'help <command>' to get help for each individual command.
+# This bit describes Limbo: the place where players begin and make their characters
 
