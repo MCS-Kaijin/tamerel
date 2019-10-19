@@ -4,7 +4,7 @@ Evennia settings file.
 The available options are found in the default settings file found
 here:
 
-/data/data/com.termux/files/home/evennia/evennia/settings_default.py
+/data/data/com.termux/files/home/tamerel/evennia/evennia/settings_default.py
 
 Remember:
 
@@ -32,7 +32,7 @@ from evennia.settings_default import *
 ######################################################################
 
 # This is the name of your game. Make it catchy!
-SERVERNAME = "tamerel"
+SERVERNAME = "Tamerel"
 
 
 ######################################################################
