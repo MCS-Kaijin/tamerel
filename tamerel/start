@@ -1,0 +1,4 @@
+#!/bin/env bash
+
+evennia start
+tt++ autoload

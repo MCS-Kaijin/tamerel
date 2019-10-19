@@ -1,0 +1,3 @@
+#macro {\cc} {#showme \e[2J}
+#macro {\cq} {#end}
+#session tamerel 127.0.0.1 4000
