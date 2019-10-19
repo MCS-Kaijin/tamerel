@@ -14,4 +14,4 @@ to override your public, shared settings.
 # Django's cookies and should not be publicly known. It should also
 # generally not be changed once people have registered with the game
 # since it will invalidate their existing sessions.
-SECRET_KEY = '-n@fQIv3|6Y-sFgX>o`KSjbJ"xzZ0kLO%p_iAc?='
+SECRET_KEY = '8IpyC_rBz(Qh9$X>ZnVcK27fjWR#DH<v5-*|OxGl'
