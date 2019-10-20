@@ -23,8 +23,33 @@
 # system for loading python-code this way.
 #
 
+
+
 desc Welcome to Tamerel. You have been created by the merciful god known only as the Lich.
 The Lich will now allow you to create your character. Type 'help character' to find character
 creation commands, and type 'help <command>' to get help for each individual command.
-# This bit describes Limbo: the place where players begin and make their characters
+# This describes Limbo: the place where players begin and make their characters
 
+dig Town Square = Real World
+# This creates the Town Square and creates an exit from Limbo called "Real World" with no way back.
+
+Real World
+# This travels to Town Square
+
+desc This is where every Tamerellian's journey begins, whether they strive against evil or seek lordship over the world\; every one of them starts here.
+# Describes Town Square
+
+create sign = dilapidated sign\;sign
+# Creates welcome sign
+
+describe sign = Welcome to Tamerel
+# Put text on the sign
+
+drop sign
+# Put the sign into the world
+
+lock sign = get:false()
+# Make sure no one can steal the sign
+
+teleport Limbo
+# This is the only way to return to Limbo, and only super-users can use it.

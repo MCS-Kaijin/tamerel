@@ -15,7 +15,7 @@ own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 """
 
 from commands.command import GetAttrCmd, SetAttrCmd, SetDescCmd
-from evennia import default_cmds
+from evennia import default_cmds, CmdSet
 
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
@@ -36,7 +36,6 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         # any commands you add below will overload the default ones.
         #
         self.add(GetAttrCmd())
-        self.add(SetAttrCmd())
         self.add(SetDescCmd())
 
 
@@ -98,3 +97,10 @@ class SessionCmdSet(default_cmds.SessionCmdSet):
         #
         # any commands you add below will overload the default ones.
         #
+
+
+class CharGenCmdSet(CmdSet):
+    key = 'CharGen'
+
+    def at_cmdset_creation(self):
+        self.add(SetAttrCmd())
