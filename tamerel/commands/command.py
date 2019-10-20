@@ -220,3 +220,20 @@ class SetAttrCmd(Command):
             self.caller.set_attribute(attr, int(val))
         except:
             self.caller.msg('Please supply a numerical value.')
+
+
+class SetDescCmd(Command):
+    '''
+        Sets your character's description
+        Usage:
+            setdescription <description>
+        Despite being a "character creation" command, this can be used anywhere. Do not use quotation marks here.
+    '''
+
+    key = 'setdescription'
+    aliases = ['setdesc']
+    help_category = 'character'
+
+    def func(self):
+        self.caller.set_description(self.args[1:])
+

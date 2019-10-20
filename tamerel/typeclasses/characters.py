@@ -35,6 +35,13 @@ class Character(DefaultCharacter):
         # create and initialize character's attributes
         self.db.attributes = {'strength': 0, 'charisma': 0, 'intelligence': 0, 'supernatural': 0, 'calm': 0}
         self.db.values = [-1, 0, 1, 2, 3]
+        self.db.description = 'This player has yet to set their description.'
+
+    def return_appearance(self, looker):
+        return self.db.desc
+
+    def set_description(self, desc):
+        self.db.description = desc
 
     def set_attribute(self, attr, value):
         if not value in self.db.values:
