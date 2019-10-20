@@ -186,3 +186,37 @@ class Command(BaseCommand):
 #                 self.character = self.caller.get_puppet(self.session)
 #             else:
 #                 self.character = None
+
+class GetAttrCmd(Command):
+    '''
+        Lists your attributes
+        Usage:
+            attributes
+    '''
+
+    key = 'attributes'
+    aliases = ['attr']
+    help_category = 'character'
+
+    def func(self):
+        self.caller.get_attributes()
+
+
+class SetAttrCmd(Command):
+    '''
+        Sets an attribute
+        Usage:
+            setattribute <attribute> <value>
+        This command may only be used in Limbo. Valid values are -1 to 3 unless otherwise stated by the command.
+    '''
+
+    key = 'setattribute'
+    aliases = ['setattr']
+    help_category = 'character'
+
+    def func(self):
+        _, attr, val = self.args.split(' ')
+        try:
+            self.caller.set_attribute(attr, int(val))
+        except:
+            self.caller.msg('Please supply a numerical value.')

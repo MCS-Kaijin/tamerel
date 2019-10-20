@@ -31,4 +31,28 @@ class Character(DefaultCharacter):
 
     """
 
-    pass
+    def at_object_creation(self):
+        # create and initialize character's attributes
+        self.db.attributes = {'strength': 0, 'charisma': 0, 'intelligence': 0, 'supernatural': 0, 'calm': 0}
+        self.db.values = [-1, 0, 1, 2, 3]
+
+    def set_attribute(self, attr, value):
+        if not value in self.db.values:
+            self.msg('Please supply a valid value.\n{}'.format(' '.join([str(value) for value in self.db.values])))
+            return False
+        attr = attr.lower()
+        if not attr in self.db.attributes.keys():
+            self.msg('Please supply a valid attribute.\n{}'.format(' '.join(self.db.attributes.keys())))
+            return False
+        self.db.attributes[attr] = value
+        self.db.values.remove(value)
+        self.msg('{} set to {}'.format(attr.capitalize(), value))
+
+    def get_attributes(self):
+        for key in self.db.attributes.keys():
+            self.msg('{}: {}'.format(key.upper(), self.db.attributes[key]))
+    
+    def reset(self):
+        for key in self.db.attributes.keys():
+            self.db.attributes[key] = 0
+        self.db.values = [-1, 0, 1, 2, 3]
