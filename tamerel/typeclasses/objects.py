@@ -160,3 +160,88 @@ class Object(DefaultObject):
      """
 
     pass
+
+
+class AttributableObject(Object):
+    def str_miss(self, doer):
+        pass
+
+    def str_mixed_success(self, doer):
+        pass
+
+    def str_success(self, doer):
+        pass
+
+    def chr_miss(self, doer):
+        pass
+
+    def chr_mixed_success(self, doer):
+        pass
+
+    def chr_success(self, doer):
+        pass
+
+    def int_miss(self, doer):
+        pass
+
+    def int_mixed_success(self, doer):
+        pass
+
+    def int_success(self, doer):
+        pass
+
+    def spn_miss(self, doer):
+        pass
+
+    def spn_mixed_success(self, doer):
+        pass
+
+    def spn_success(self, doer):
+        pass
+
+    def clm_miss(self, doer):
+        pass
+
+    def clm_mixed_success(self, doer):
+        pass
+
+    def clm_success(self, doer):
+        pass
+
+
+class Dummy(AttributableObject):
+    def str_miss(self, doer):
+        doer.location.msg_contents('{} absolutely missed the dummy!'.format(doer.key))
+
+    def str_mixed_success(self, doer):
+        doer.msg('You hit the dummy.')
+
+    def str_success(self, doer):
+        doer.location.msg_contents('{} positively crushed the dummy!'.format(doer.key))
+
+    def int_miss(self, doer):
+        doer.msg('Is it a dummy? You can\'t quite tell.')
+
+    def int_mixed_success(self, doer):
+        doer.msg('It is definitely a dummy.')
+
+    def int_success(self, doer):
+        doer.msg('You can tell it is made of canvas stretched over wooden planks.')
+
+    def chr_miss(self, doer):
+        doer.location.msg_contents('{} is flirting loudly with the dummy.'.format(doer.key))
+
+    def chr_mixed_success(self, doer):
+        doer.msg('The dummy seems unfazed by your wiles.')
+
+    def chr_success(self, doer):
+        doer.msg('Despite being an inanimate object, it seems attracted to you.')
+
+    def spn_miss(self, doer):
+        doer.msg('You mystical arts don\'t work on this thing!')
+
+    def spn_mixed_success(self, doer):
+        doer.msg('The dummy glows for a couple seconds.')
+
+    def spn_success(self, doer):
+        doer.msg('The dummy shifts off the ground momentarily.')

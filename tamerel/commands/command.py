@@ -6,6 +6,7 @@ Commands describe the input the account can do to the game.
 """
 
 from evennia import Command as BaseCommand
+from evennia import create_object
 
 # from evennia import default_cmds
 
@@ -237,3 +238,145 @@ class SetDescCmd(Command):
     def func(self):
         self.caller.set_description(self.args[1:])
 
+
+class CreateNPCCmd(Command):
+    '''
+        Creates an NPC
+        Usage:
+            createnpc <name>
+        Lich only.
+    '''
+
+    key = 'createnpc'
+    aliases = []
+    help_category = 'lich'
+    locks = 'call:id(1)'
+
+    def func(self):
+        name = self.args[1:].capitalize()
+        npc = create_object('characters.Character',
+            key=name,
+            location=self.caller.location,
+            locks='edit:perm(Builders);call:false()')
+        self.caller.msg('You created {} the NPC!'.format(name))
+        self.caller.location.msg_contents('The almighty Lich has created {} the NPC!'.format(name), exclude=self.caller)
+
+
+class StrengthCmd(Command):
+    '''
+        Attempts to use your strength skill
+        Usage:
+            strength <object>
+    '''
+
+    key = 'strength'
+    aliases = ['str']
+    help_category = 'skills'
+
+    def func(self):
+        obj = self.caller.location.search(self.args[1:])
+        if not obj:
+            return
+        roll = self.caller.roll_plus_attr('strength')
+        if 1 <= roll <= 6:
+            obj.str_miss(self.caller)
+        elif 7 <= roll <= 9:
+            obj.str_mixed_success(self.caller)
+        elif 10 <= roll:
+            obj.str_success(self.caller)
+
+
+class CharismaCmd(Command):
+    '''
+        Attempts to use your charisma skill
+        Usage:
+            charisma <object>
+    '''
+
+    key = 'charisma'
+    aliases = ['chr']
+    help_category = 'skills'
+
+    def func(self):
+        obj = self.caller.location.search(self.args[1:])
+        if not obj:
+            return
+        roll = self.caller.roll_plus_attr('charisma')
+        if 1 <= roll <= 6:
+            obj.chr_miss(self.caller)
+        elif 7 <= roll <= 9:
+            obj.chr_mixed_success(self.caller)
+        elif 10 <= roll:
+            obj.chr_success(self.caller)
+
+
+class IntelligenceCmd(Command):
+    '''
+        Attempts to use your intelligence skill
+        Usage:
+            intelligence <object>
+    '''
+
+    key = 'intelligence'
+    aliases = ['int']
+    help_category = 'skills'
+
+    def func(self):
+        obj = self.caller.location.search(self.args[1:])
+        if not obj:
+            return
+        roll = self.caller.roll_plus_attr('intelligence')
+        if 1 <= roll <= 6:
+            obj.int_miss(self.caller)
+        elif 7 <= roll <= 9:
+            obj.int_mixed_success(self.caller)
+        elif 10 <= roll:
+            obj.int_success(self.caller)
+
+
+class SupernaturalCmd(Command):
+    '''
+        Attempts to use your supernatural skill
+        Usage:
+            supernatural <object>
+    '''
+
+    key = 'supernatural'
+    aliases = ['spn']
+    help_category = 'skills'
+
+    def func(self):
+        obj = self.caller.location.search(self.args[1:])
+        if not obj:
+            return
+        roll = self.caller.roll_plus_attr('supernatural')
+        if 1 <= roll <= 6:
+            obj.spn_miss(self.caller)
+        elif 7 <= roll <= 9:
+            obj.spn_mixed_success(self.caller)
+        elif 10 <= roll:
+            obj.spn_success(self.caller)
+
+
+class CalmCmd(Command):
+    '''
+        Attempts to use your calm skill
+        Usage:
+            calm <object>
+    '''
+
+    key = 'calm'
+    aliases = ['clm']
+    help_category = 'skills'
+
+    def func(self):
+        obj = self.caller.location.search(self.args[1:])
+        if not obj:
+            return
+        roll = self.caller.roll_plus_attr('calm')
+        if 1 <= roll <= 6:
+            obj.clm_miss(self.caller)
+        elif 7 <= roll <= 9:
+            obj.clm_mixed_success(self.caller)
+        elif 10 <= roll:
+            obj.clm_success(self.caller)

@@ -7,6 +7,8 @@ is setup to be the "default" character type created by the default
 creation commands.
 
 """
+import random
+
 from evennia import DefaultCharacter
 
 
@@ -63,3 +65,7 @@ class Character(DefaultCharacter):
         for key in self.db.attributes.keys():
             self.db.attributes[key] = 0
         self.db.values = [-1, 0, 1, 2, 3]
+
+    def roll_plus_attr(self, attr):
+        base = random.randint(2, 12)
+        return base + self.db.attributes[attr]

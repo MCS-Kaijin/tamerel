@@ -39,7 +39,7 @@ Real World
 desc This is where every Tamerellian's journey begins, whether they strive against evil or seek lordship over the world\; every one of them starts here.
 # Describes Town Square
 
-create sign = dilapidated sign\;sign
+create sign
 # Creates welcome sign
 
 describe sign = Welcome to Tamerel
@@ -50,6 +50,18 @@ drop sign
 
 lock sign = get:false()
 # Make sure no one can steal the sign
+
+create dummy:objects.Dummy
+# Create a dummy to practice skills on
+
+describe dummy = Practice your skills on this dummy. Type 'help skills' to see a list of your skills.
+# This is the best tutorial you're gonna get!
+
+drop dummy
+# Drop dummy
+
+lock dummy = get:false()
+# No stealing the dummy either
 
 teleport Limbo
 # This is the only way to return to Limbo, and only super-users can use it.
