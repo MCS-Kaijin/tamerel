@@ -12,7 +12,7 @@ just overloads its hooks to have it perform its function.
 
 """
 
-from evennia import DefaultScript
+from evennia import DefaultScript, create_object
 
 
 class Script(DefaultScript):
@@ -90,3 +90,14 @@ class Script(DefaultScript):
     """
 
     pass
+
+
+class RegenerateMobs(Script):
+    def at_script_creation(self):
+        self.interval = 60
+        self.key = 'RegenerateMobs'
+        self.desc = 'Cause monsters to respawn'
+
+    def at_repeat(self):
+        # create_object('characters.Horror', key='Abomination', location=self.search('#2'), locks='edit:id(1);call:false()')
+        pass

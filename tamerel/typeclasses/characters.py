@@ -38,6 +38,7 @@ class Character(DefaultCharacter):
         self.db.attributes = {'strength': 0, 'charisma': 0, 'intelligence': 0, 'supernatural': 0, 'calm': 0}
         self.db.values = [-1, 0, 1, 2, 3]
         self.db.description = 'This player has yet to set their description.'
+        self.db.humanity = 100
 
     def return_appearance(self, looker):
         return self.db.desc
@@ -56,6 +57,9 @@ class Character(DefaultCharacter):
         self.db.attributes[attr] = value
         self.db.values.remove(value)
         self.msg('{} set to {}'.format(attr.capitalize(), value))
+    
+    def set_attribute_ADMIN(self, attr, value):
+        self.db.attributes[attr] = value
 
     def get_attributes(self):
         for key in self.db.attributes.keys():
@@ -69,3 +73,46 @@ class Character(DefaultCharacter):
     def roll_plus_attr(self, attr):
         base = random.randint(2, 12)
         return base + self.db.attributes[attr]
+
+    def str_miss(self, doer):
+        doer.db.humanity -= 1
+        doer.location.msg_contents('{} tried to attack {} but missed!'.format(doer.key, self.key))
+        doer.check_humanity()
+
+    def str_mixed_success(self, doer):
+        doer.db.humanity -= 5
+        doer.location.msg_contents('{} attacked {}!'.format(doer.key, self.key))
+        doer.check_humanity()
+
+    def str_success(self, doer):
+        doer.db.humanity -= 10
+        doer.location.msg_contents('{} brutally mauled {}!'.format(doer.key, self.key))
+        doer.check_humanity()
+
+    def check_humanity(self):
+        if self.db.humanity <= 0:
+            self.db.humanity = 0
+            self.msg('You are no longer human!')
+
+
+class Horror(Character):
+    def at_object_creation(self):
+        super.at_object_creation(self)
+        self.db.humanity = 0
+        self.db.attributes.update({'health': 0})
+    
+    def str_miss(self, doer):
+        doer.msg('You missed {}.'.format(self.key))
+
+    def str_mixed_success(self, doer):
+        self.db.attributes['health'] -= 3
+        doer.msg('You hit {}.'.format(self.key))
+
+    def str_success(self, doer):
+        self.db.attributes['health'] -= 5
+        doer.msg('You hit {} hard!'.format(self.key))
+
+    def check_health(self):
+        if self.db.attributes['health'] <= 0:
+            self.delete()
+
