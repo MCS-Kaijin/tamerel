@@ -107,12 +107,14 @@ class Horror(Character):
     def str_mixed_success(self, doer):
         self.db.attributes['health'] -= 3
         doer.msg('You hit {}.'.format(self.key))
+        self.check_health()
 
     def str_success(self, doer):
         self.db.attributes['health'] -= 5
         doer.msg('You hit {} hard!'.format(self.key))
+        self.check_health()
 
     def check_health(self):
         if self.db.attributes['health'] <= 0:
+            self.location.msg_contents('{} cries out in pain as it collapses back into dark magical energy!'.format(self.key.capitalize()))
             self.delete()
-

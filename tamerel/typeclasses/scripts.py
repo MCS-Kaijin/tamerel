@@ -99,7 +99,9 @@ class RegenerateMobs(Script):
         self.desc = 'Cause monsters to respawn'
 
     def at_repeat(self):
-        create_object('characters.Horror',
-                key='Abomination',
-                location=self.obj,
-                locks='edit:id(1);call:false()')
+        if len([o for o in self.obj.contents if o.key == 'Abomination']) < 5:
+            monster = create_object('characters.Horror',
+                    key='Abomination',
+                    location=self.obj,
+                    locks='edit:id(1);call:false()')
+            monster.db.attributes['health'] = 10
