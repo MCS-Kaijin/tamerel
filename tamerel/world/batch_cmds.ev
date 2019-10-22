@@ -63,5 +63,14 @@ drop dummy
 lock dummy = get:false()
 # No stealing the dummy either
 
+tunnel n = Abandoned Residential District
+# Create the above named location to the north of the Town Square
+
+n
+# Go there
+
+desc This was once a bustling town full of people, but an attack of evil creatures have driven away or killed most of the residents.
+# Describe the location
+
 teleport Limbo
 # This is the only way to return to Limbo, and only super-users can use it.

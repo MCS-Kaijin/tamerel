@@ -61,6 +61,10 @@ class Character(DefaultCharacter):
     def set_attribute_ADMIN(self, attr, value):
         self.db.attributes[attr] = value
 
+    def annhilate_ADMIN(self):
+        self.reset()
+        self.move_to(self.search('Limbo'))
+
     def get_attributes(self):
         for key in self.db.attributes.keys():
             self.msg('{}: {}'.format(key.upper(), self.db.attributes[key]))
