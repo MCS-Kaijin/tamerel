@@ -97,7 +97,7 @@ class Character(DefaultCharacter):
 
 class Horror(Character):
     def at_object_creation(self):
-        super.at_object_creation(self)
+        Character.at_object_creation(self)
         self.db.humanity = 0
         self.db.attributes.update({'health': 0})
     
