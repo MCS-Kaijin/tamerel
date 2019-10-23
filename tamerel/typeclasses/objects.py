@@ -238,10 +238,22 @@ class Dummy(AttributableObject):
         doer.msg('Despite being an inanimate object, it seems attracted to you.')
 
     def spn_miss(self, doer):
-        doer.msg('You mystical arts don\'t work on this thing!')
+        doer.msg('Your mystical arts don\'t work on this thing!')
 
     def spn_mixed_success(self, doer):
         doer.msg('The dummy glows for a couple seconds.')
 
     def spn_success(self, doer):
         doer.msg('The dummy shifts off the ground momentarily.')
+
+
+class Board(Object):
+    def at_object_creation(self):
+        self.db.contents = []
+
+    def post(self, text):
+        self.db.contents.append(text)
+        self.location.msg_contents('A new post was added to the board!')
+
+    def read(self, doer):
+        doer.msg('\n'.join(self.db.contents))

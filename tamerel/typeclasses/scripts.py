@@ -92,11 +92,11 @@ class Script(DefaultScript):
     pass
 
 
-class RegenerateMobs(Script):
+class SpawnMonstersEasy(Script):
     def at_script_creation(self):
         self.interval = 60
-        self.key = 'RegenerateMobs'
-        self.desc = 'Cause monsters to respawn'
+        self.key = 'SpawnMonstersEasy'
+        self.desc = 'Easy Monsters'
 
     def at_repeat(self):
         if len([o for o in self.obj.contents if o.key == 'Abomination']) < 5:
@@ -105,3 +105,78 @@ class RegenerateMobs(Script):
                     location=self.obj,
                     locks='edit:id(1);call:false()')
             monster.db.attributes['health'] = 10
+
+
+class SpawnMonstersMedium(Script):
+    def at_script_creation(self):
+        self.interval = 60
+        self.key = 'SpawnMonstersMedium'
+        self.desc = 'Medium Monsters'
+
+    def at_repeat(self):
+        if len([o for o in self.obj.contents if o.key == 'Abomination']) < 5:
+            monster = create_object('characters.Horror',
+                    key='Abomination',
+                    location=self.obj,
+                    locks='edit:id(1);call:false()')
+            monster.db.attribtues['health'] = 20
+
+
+class SpawnMonstersHard(Script):
+    def at_script_creation(self):
+        self.interval = 60
+        self.key = 'SpawnMonstersHard'
+        self.desc = 'Hard Monsters'
+
+    def at_repeat(self):
+        if len([o for o in self.obj.contents if o.key == 'Abomination']) < 5:
+            monster = create_object('characters.Horror',
+                    key='Abomination',
+                    location=self.obj,
+                    locks='edit:id(1);call:false()')
+            monster.db.attribtues['health'] = 30
+
+
+class ManySpawnMonstersEasy(Script):
+    def at_script_creation(self):
+        self.interval = 60
+        self.key = 'ManySpawnMonstersEasy'
+        self.desc = 'Many Easy Monsters'
+
+    def at_repeat(self):
+        if len([o for o in self.obj.contents if o.key == 'Abomination']) < 15:
+            monster = create_object('characters.Horror',
+                    key='Abomination',
+                    location=self.obj,
+                    locks='edit:id(1);call:false()')
+            monster.db.attributes['health'] = 10
+
+
+class ManySpawnMonstersMedium(Script):
+    def at_script_creation(self):
+        self.interval = 60
+        self.key = 'ManySpawnMonstersMedium'
+        self.desc = 'Many Medium Monsters'
+
+    def at_repeat(self):
+        if len([o for o in self.obj.contents if o.key == 'Abomination']) < 15:
+            monster = create_object('characters.Horror',
+                    key='Abomination',
+                    location=self.obj,
+                    locks='edit:id(1);call:false()')
+            monster.db.attribtues['health'] = 20
+
+
+class ManySpawnMonstersHard(Script):
+    def at_script_creation(self):
+        self.interval = 60
+        self.key = 'ManySpawnMonstersHard'
+        self.desc = 'Many Hard Monsters'
+
+    def at_repeat(self):
+        if len([o for o in self.obj.contents if o.key == 'Abomination']) < 5:
+            monster = create_object('characters.Horror',
+                    key='Abomination',
+                    location=self.obj,
+                    locks='edit:id(1);call:false()')
+            monster.db.attribtues['health'] = 30

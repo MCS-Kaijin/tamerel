@@ -5,6 +5,7 @@ Commands describe the input the account can do to the game.
 
 """
 
+from evennia.utils.search import search_object
 from evennia import Command as BaseCommand
 from evennia import create_object
 
@@ -380,3 +381,19 @@ class CalmCmd(Command):
             obj.clm_mixed_success(self.caller)
         elif 10 <= roll:
             obj.clm_success(self.caller)
+
+
+class GripeCmd(Command):
+    '''
+        Posts feedback in a place where the Lich can see and will often check.
+        Usage:
+            gripe <feedback>
+        The feedback needn't always be negative, but don't shy away from negative feedback either.
+    '''
+
+    key = 'gripe'
+    aliases = []
+    help_category = 'feedback'
+
+    def func(self):
+        search_object('Lich\'s Board')[0].post(self.args[1:])

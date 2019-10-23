@@ -72,5 +72,17 @@ n
 desc This was once a bustling town full of people, but an attack of evil creatures have driven away or killed most of the residents.
 # Describe the location
 
+dig Lich's Castle (Courtyard)
+# Begin creating my castle
+
+teleport Lich's Castle (Courtyard)
+# Go there
+
+create Lich's Board:objects.Board
+# Create the message board
+
+drop Lich's Board
+# Drop it
+
 teleport Limbo
 # This is the only way to return to Limbo, and only super-users can use it.

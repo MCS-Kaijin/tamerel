@@ -14,7 +14,7 @@ own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 
 """
 
-from commands.command import GetAttrCmd, SetAttrCmd, SetDescCmd, CreateNPCCmd, StrengthCmd
+from commands.command import GetAttrCmd, SetAttrCmd, SetDescCmd, CreateNPCCmd, StrengthCmd, GripeCmd
 from evennia import default_cmds, CmdSet
 
 
@@ -39,6 +39,7 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         self.add(SetDescCmd())
         self.add(CreateNPCCmd())
         self.add(StrengthCmd())
+        self.add(GripeCmd())
 
 
 class AccountCmdSet(default_cmds.AccountCmdSet):
