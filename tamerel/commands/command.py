@@ -397,3 +397,59 @@ class GripeCmd(Command):
 
     def func(self):
         search_object('Lich\'s Board')[0].post(self.args[1:])
+
+
+class PostCmd(Command):
+    '''
+        Posts text on a specified board.
+        Usage:
+            post <board> <text>
+    '''
+
+    key = 'post'
+    aliases = []
+    help_category = 'communication'
+
+    def func(self):
+        args = self.args[1:]
+        board = args.split(' ')[0]
+        text = args.split(' ')[1:]
+        text = ' '.join(text)
+        self.caller.search(board).post(text)
+
+
+class ReadCmd(Command):
+    '''
+        Reads text off a specified board
+        Usage:
+            read <board>
+    '''
+
+    key = 'read'
+    aliases = []
+    help_category = 'communication'
+
+    def func(self):
+        board = ' '.join(self.args.split(' ')[1:])
+        self.caller.search(board).read(self.caller)
+
+
+class ConsumeCmd(Command):
+    '''
+        Consumes a Fate Token
+        Usage:
+            consume
+        You eat a Fate Token either from your inventory or lying on the ground and gain humanity.
+    '''
+
+    key = 'consume'
+    aliases = ['eat']
+    help_category = 'moves'
+
+    def func(self):
+        ft = self.caller.search('Fate Token')
+        if not ft:
+            return
+        ft.delete()
+        self.caller.db.humanity += 10
+        self.caller.msg('You feel more human.')

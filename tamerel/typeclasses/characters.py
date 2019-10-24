@@ -10,7 +10,7 @@ creation commands.
 import random
 
 from evennia import DefaultCharacter
-
+from evennia.utils.create import create_object
 
 class Character(DefaultCharacter):
     """
@@ -97,6 +97,9 @@ class Character(DefaultCharacter):
         if self.db.humanity <= 0:
             self.db.humanity = 0
             self.msg('You are no longer human!')
+            ft = create_object('objects.Object',
+                    key='Fate Token',
+                    location=self.location)
 
 
 class Horror(Character):
@@ -110,11 +113,13 @@ class Horror(Character):
 
     def str_mixed_success(self, doer):
         self.db.attributes['health'] -= 3
+        doer.db.humanity += 1
         doer.msg('You hit {}.'.format(self.key))
         self.check_health()
 
     def str_success(self, doer):
         self.db.attributes['health'] -= 5
+        doer.db.humanity += 1
         doer.msg('You hit {} hard!'.format(self.key))
         self.check_health()
 

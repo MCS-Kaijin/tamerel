@@ -257,3 +257,6 @@ class Board(Object):
 
     def read(self, doer):
         doer.msg('\n'.join(self.db.contents))
+
+    def clear(self):
+        self.db.contents = []

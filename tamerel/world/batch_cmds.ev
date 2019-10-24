@@ -63,6 +63,18 @@ drop dummy
 lock dummy = get:false()
 # No stealing the dummy either
 
+create notice board:objects.Board
+# Create the notice board
+
+drop notice board
+# Drop it
+
+lock notice board = get:false()
+# Nope
+
+describe notice board = Try 'read'ing me.
+# Encourage players to read the board
+
 tunnel n = Abandoned Residential District
 # Create the above named location to the north of the Town Square
 
@@ -71,6 +83,41 @@ n
 
 desc This was once a bustling town full of people, but an attack of evil creatures have driven away or killed most of the residents.
 # Describe the location
+
+tunnel n = Dilapidated Arena
+# Create the location
+
+n
+# Go there
+
+desc An old place where sunken-eyed men who had long ago lost their humanity watched Lords slay Antilords, booing on the rare occasion an Antilord survived. Those days are long past, and only the results of the Lich's dark magic remain.
+# Describe it
+
+script here = scripts.SpawnMonstersEasy
+# Spawn a few easy monsters here
+
+s
+# Go back to the residential district
+
+s
+# Go back to the town square
+
+tunnel w = Town Hall (Entrance)
+# Create the entrance to town hall here
+
+w
+# Go there
+
+desc Here lies the entrance to the abhorrent town hall whither Lords once held counsel regarding what to do with the wretched town.
+# Describe town hall's entrance
+
+dig Town Hall = Town Hall, Entrance
+# Create the interior of town hall
+
+town hall
+# Go there
+
+desc
 
 dig Lich's Castle (Courtyard)
 # Begin creating my castle
