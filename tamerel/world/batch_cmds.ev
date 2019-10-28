@@ -111,13 +111,14 @@ w
 desc Here lies the entrance to the abhorrent town hall whither Lords once held counsel regarding what to do with the wretched town.
 # Describe town hall's entrance
 
-dig Town Hall = Town Hall, Entrance
+dig Town Hall = Town Hall (Entrance)
 # Create the interior of town hall
 
 town hall
 # Go there
 
-desc
+desc A place tainted by the presence of Lords. Now it lies empty.
+# Describe it
 
 dig Lich's Castle (Courtyard)
 # Begin creating my castle
@@ -125,11 +126,14 @@ dig Lich's Castle (Courtyard)
 teleport Lich's Castle (Courtyard)
 # Go there
 
+open To Limbo = Limbo
+# open an entrance to Limbo in the castle
+
 create Lich's Board:objects.Board
 # Create the message board
 
 drop Lich's Board
 # Drop it
 
-teleport Limbo
+teleport #2
 # This is the only way to return to Limbo, and only super-users can use it.
