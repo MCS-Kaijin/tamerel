@@ -1,14 +1,9 @@
-body{
+body {
 	background-color: #000000;
-	color: #FFFFFF
+	color: #FFFFFF;
+	margin: 20px
 }
 
-.box{
-}
-
-.header{
-}
-
-.contents{
-	display: none
+.centered {
+	text-align: center
 }
