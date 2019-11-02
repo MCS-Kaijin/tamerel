@@ -453,3 +453,25 @@ class ConsumeCmd(Command):
         ft.delete()
         self.caller.db.humanity += 10
         self.caller.msg('You feel more human.')
+
+
+class ActivateCmd(Command):
+    '''
+        Activates a Fate Token
+        Usage:
+            activate
+        You activate a Fate Token and become a Lord. The Lich will visit you soon.
+    '''
+
+    key = 'activate'
+    aliases = []
+    help_category = 'moves'
+
+    def func(self):
+        ft = self.caller.search('Fate Token')
+        if not ft or self.caller.db.humanity > 0:
+            print('The conditions are not right.')
+            return
+        ft.delete()
+        self.caller.msg('You have become a Lord!')
+        self.caller.db.is_lord = True

@@ -15,7 +15,7 @@ own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 """
 
 from commands.command import GetAttrCmd, SetAttrCmd, SetDescCmd, CreateNPCCmd, StrengthCmd, GripeCmd, PostCmd, ReadCmd
-from commands.command import ConsumeCmd
+from commands.command import ConsumeCmd, ActivateCmd, IntelligenceCmd, CharismaCmd, CalmCmd, SupernaturalCmd
 from evennia import default_cmds, CmdSet
 
 
@@ -40,10 +40,15 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         self.add(SetDescCmd())
         self.add(CreateNPCCmd())
         self.add(StrengthCmd())
+        self.add(CharismaCmd())
+        self.add(IntelligenceCmd())
+        self.add(SupernaturalCmd())
+        self.add(CalmCmd())
         self.add(GripeCmd())
         self.add(PostCmd())
         self.add(ReadCmd())
         self.add(ConsumeCmd())
+        self.add(ActivateCmd())
 
 
 class AccountCmdSet(default_cmds.AccountCmdSet):

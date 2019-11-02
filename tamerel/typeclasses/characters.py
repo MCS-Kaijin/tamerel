@@ -35,13 +35,25 @@ class Character(DefaultCharacter):
 
     def at_object_creation(self):
         # create and initialize character's attributes
-        self.db.attributes = {'strength': 0, 'charisma': 0, 'intelligence': 0, 'supernatural': 0, 'calm': 0}
+        self.db.attributes = {'strength': 0, 'charisma': 0, 'intelligence': 0, 'supernatural': 0, 'calm': 0, 'health': 10}
         self.db.values = [-1, 0, 1, 2, 3]
         self.db.description = 'This player has yet to set their description.'
         self.db.humanity = 100
+        self.db.is_lord = False
 
     def return_appearance(self, looker):
-        return self.db.desc
+        string = 'They appear to be Immortal Man like yourself.'
+        if self.db.attributes['health'] > 7:
+            string += ' They are in good health!'
+        elif self.db.attributes['health'] > 5:
+            string += ' They are looking a little rough.'
+        elif self.db.attributs['health'] > 1:
+            string += ' They don\'t look too good.'
+        else:
+            string += ' They should be down!'
+        if self.db.is_lord:
+            string += ' They have a hollow look in their eyes....'
+        return string
 
     def set_description(self, desc):
         self.db.description = desc
@@ -106,7 +118,6 @@ class Horror(Character):
     def at_object_creation(self):
         Character.at_object_creation(self)
         self.db.humanity = 0
-        self.db.attributes.update({'health': 0})
     
     def str_miss(self, doer):
         doer.msg('You missed {}.'.format(self.key))
